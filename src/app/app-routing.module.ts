@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path:'share-review',
-    loadChildren: ()=> import('./modules/share-review/share-review-routing.module').then(m => m.ShareReviewRoutingModule)
+    path:'main',
+    loadChildren: ()=> import('./modules/share-review/main-routing.module').then(m => m.MainRoutingModule)
   }
 ];
 
