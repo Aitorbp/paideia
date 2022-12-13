@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card-movie',
@@ -7,6 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class CardMovieComponent  {
   @Input() image : string  = '';
-  @Input() name : string  = '';
+  @Input() title : string  = '';
   @Input() description : string  = '';
+  @Output('goToDetail') goToDetail: EventEmitter<any> = new EventEmitter();
+
+  
+
 }

@@ -1,8 +1,8 @@
   <div class="card" style="width: 18rem;">
-    <img src="https://image.tmdb.org/t/p/w185/{{image}}" class="card-img-top"  >
+    <img src="https://image.tmdb.org/t/p/w185/{{image}}" class="card-img-top">
     <div class="card-body">
-      <h5 class="card-title">{{name}}</h5>
+      <h5 class="card-title">{{title}}</h5>
       <p class="card-text"  >{{description}}</p>
-      <a href="#" class="btn btn-primary">See movie</a>
+      <button (click)="goToDetail.emit()"  class="btn btn-primary"  >See movie</button>
     </div>
   </div>

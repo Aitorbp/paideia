@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesComponentService, MoviesResults } from 'src/app/services/movies-component.service';
+import { Router } from '@angular/router';
+import { MoviesComponentService, MoviesResults, Results } from 'src/app/services/movies-component.service';
 
 @Component({
   selector: 'main',
@@ -8,16 +9,33 @@ import { MoviesComponentService, MoviesResults } from 'src/app/services/movies-c
 })
 export class MainComponent implements OnInit {
 
-  constructor(private readonly moviesService: MoviesComponentService) { }
+  constructor(private readonly moviesService: MoviesComponentService,
+    private router: Router) { }
 
    movies = new MoviesResults;
    public page!: number;
-  ngOnInit(): void { 
-    this.moviesService.getMovies().subscribe( res =>
-      this.movies = res
-    );
-    
-  }
+   search: string = '';
+   movieSearched = new Results;
+
+    ngOnInit(): void { 
+      this.moviesService.getMovies().subscribe( res =>
+        this.movies = res
+      );
+      
+    }
+
+    goToDetailMovie(movieId: number) {
+      console.log("kkdkwkkdw");
+      this.router.navigate(['app-movie-detail'], {queryParams: {movieId: movieId ,  skipLocationChange: true}});
+    }
+
+    searchMovie(searchMovie: string) {
+      console.log(searchMovie);
+      this.movieSearched = this.movies.results.filter(x => x.title == searchMovie)[0];
+      this.movies.results = [this.movieSearched]
+      console.log(this.movieSearched);
+      console.log(this.movies.results);  
+    }
 
  
 

@@ -39,6 +39,7 @@ export class MoviesComponentService {
   private readonly API = 'https://api.themoviedb.org/3/';
   private readonly API_KEY = '7e8f7af929f7baeb292f5738bbe0f011';
   private readonly REGION = 'ES';
+  private readonly LANGUAGE = 'en-US';
   
   getMovies() : Observable<MoviesResults> {
     const params = new HttpParams()
@@ -47,6 +48,15 @@ export class MoviesComponentService {
     .set('region', this.REGION);
     console.log(this.API + 'discover/movie?'+  params);
     return this.http.get<MoviesResults>(this.API + 'discover/movie?'+ params);
+ 
+  }
+
+  getMovieById(id: number) : Observable<Results> {
+    const params = new HttpParams()
+    .set('api_key', this.API_KEY)
+    .set('language', this.LANGUAGE);
+    console.log(this.API + '/movie/'+ id  +'?'+ params);
+    return this.http.get<Results>(this.API + '/movie/'+ id  +'?'+ params);
  
   }
 }
